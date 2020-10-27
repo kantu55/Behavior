@@ -1,3 +1,7 @@
+/*
+ @file Enemy.cpp
+*/
+
 #include <stdio.h>
 #include "Enemy.h"
 #include "BehaviorData.h"
@@ -14,8 +18,8 @@ Enemy::Enemy(BehaviorTree* ai_tree, float max_hp, float max_mp, float attack, fl
 {
 	m_BehaviorData = new BehaviorData();
 
-	m_SkillList.push_back(1);
-	m_MagicList.push_back(1);
+	m_SkillList.push_back(1); // スキルを追加
+	m_MagicList.push_back(1); // 魔法を追加
 }
 
 /*
@@ -41,21 +45,33 @@ void Enemy::RectiveDamage(float damage)
 	m_Hp -= damage;
 }
 
+/*
+ 物理攻撃
+*/
 void Enemy::PhysicsAttack()
 {
 	printf("物理攻撃\n");
 }
 
+/*
+ 守備
+*/
 void Enemy::Deffence()
 {
 	printf("守備\n");
 }
 
+/*
+ スキルを使用
+*/
 void Enemy::UseSkill()
 {
 	printf("スキル使用\n");
 }
 
+/*
+ 魔法を使用
+*/
 void Enemy::UseMagic()
 {
 	printf("魔法使用\n");
