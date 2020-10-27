@@ -1,3 +1,7 @@
+/*
+ @file AttackJudgment.h
+*/
+
 #ifndef ATTACK_JUDGMENT_H_
 #define ATTACK_JUDGMENT_H_
 

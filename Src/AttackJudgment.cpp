@@ -1,7 +1,17 @@
+/*
+ @file AttackJudgment.cpp
+*/
+
 #include <stdlib.h>
 #include "AttackJudgment.h"
 #include "Enemy.h"
 
+/*
+ UŒ‚—p‚Ì”»’è
+
+ @return true  Às‚·‚é
+ @return false Às‚µ‚È‚¢
+*/
 bool AttackJudgment::Judgment(Enemy* enemy)
 {
 	int random = 0;
