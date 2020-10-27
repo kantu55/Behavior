@@ -10,9 +10,14 @@
 void BehaviorData::Init()
 {
 	m_RunSequenceStepMap.clear();
+	m_RunSelectorStepMap.clear();
 	while (m_SequenceStack.size() > 0)
 	{
 		m_SequenceStack.pop();
+	}
+	while (m_SelectorStack.size() > 0)
+	{
+		m_SelectorStack.pop();
 	}
 }
 
@@ -37,6 +42,32 @@ NodeBase* BehaviorData::PopSequenceNode()
 	{
 		// 取り出したデータを削除
 		m_SequenceStack.pop();
+	}
+
+	return node;
+}
+
+// セレクターノードのプッシュ
+void BehaviorData::PushSelectorNode(NodeBase* node)
+{
+	m_SelectorStack.push(node);
+}
+
+// セレクターノードのポップ
+NodeBase* BehaviorData::PopSelectorNode()
+{
+	// 空ならNULL
+	if (m_SelectorStack.empty() != 0)
+	{
+		return NULL;
+	}
+
+	NodeBase* node = m_SelectorStack.top();
+
+	if (node)
+	{
+		// 取り出したデータを削除
+		m_SelectorStack.pop();
 	}
 
 	return node;
