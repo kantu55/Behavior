@@ -1,8 +1,13 @@
+/*
+ @file ExecJudgmentBase.h
+*/
+
 #ifndef EXEC_JUDGMENT_BASE_H_
 #define EXEC_JUDGMENT_BASE_H_
 
 class Enemy;
 
+// ”»’èŠî’êƒNƒ‰ƒX
 class ExecJudgmentBase
 {
 public:
