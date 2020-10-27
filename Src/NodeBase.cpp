@@ -83,6 +83,10 @@ NodeBase* NodeBase::Inference(Enemy* enemy, BehaviorData* data)
 	case BehaviorTree::ON_OFF:
 		result = SelectOnOff(&list, data);
 		break;
+	// セレクター
+	case BehaviorTree::Selector:
+		result = SelectSelector(&list, data);
+		break;
 	}
 
 	if (result)
@@ -98,7 +102,6 @@ NodeBase* NodeBase::Inference(Enemy* enemy, BehaviorData* data)
 			result = result->Inference(enemy, data);
 		}
 	}
-
 	return result;
 }
 
@@ -202,23 +205,18 @@ NodeBase* NodeBase::SelectSequence(std::vector<NodeBase*> *list, BehaviorData* d
 	return NULL;
 }
 
+/*
+ セレクター法 … 子ノードを上から順に選択していく。行動が正常終了した時点でルートに戻る
+*/
 NodeBase* NodeBase::SelectSelector(std::vector<NodeBase*> *list, BehaviorData* data)
 {
-	// 今のノードのシーケンスのステップを取得
-	int step = data->GetSequenceStep(GetName());
+	// 今のノードのセレクターのステップを取得
+	int step = data->GetSelectorStep(GetName());
 
-	// シーケンスが終わったら終了
+	// セレクターが終わったら終了
 	if (step >= m_Child.size())
 	{
-		if (m_SelectRule != BehaviorTree::SELECT_RULE::SEQUENTIAL_LOOPING)
-		{
-			return NULL;
-		}
-		else
-		{
-			// Loopingの場合は頭から実行
-			step = 0;
-		}
+		return NULL;
 	}
 
 	// 順番のノードが実行できているかチェック
@@ -226,14 +224,13 @@ NodeBase* NodeBase::SelectSelector(std::vector<NodeBase*> *list, BehaviorData* d
 	{
 		if (m_Child[step]->GetName() == (*itr)->GetName())
 		{
-			// シーケンスノードを記録
-			data->PushSequenceNode(this);
-			// シーケンスステップを更新
-			data->SetSequenceStep(GetName(), step + 1);
+			// セレクターノードを記録
+			data->PushSelectorNode(this);
+			// セレクターステップを更新
+			data->SetSelectorStep(GetName(), step + 1);
 			return m_Child[step];
 		}
 	}
-
 	return NULL;
 }
 
