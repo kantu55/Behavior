@@ -1,3 +1,7 @@
+/*
+ @file SkillAttackJudgment.h
+*/
+
 #ifndef SKILL_ATTACK_JUDGMENT_H_
 #define SKILL_ATTACK_JUDGMENT_H_
 
