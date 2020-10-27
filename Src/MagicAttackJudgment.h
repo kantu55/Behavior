@@ -1,3 +1,7 @@
+/*
+ @file MagicJudgment.h
+*/
+
 #ifndef MAGIC_ATTACK_JUDGMENT_H_
 #define MAGIC_ATTACK_JUDGMENT_H_
 
