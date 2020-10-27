@@ -27,10 +27,12 @@ Enemy::Enemy(BehaviorTree* ai_tree, float max_hp, float max_mp, float attack, fl
 */
 void Enemy::Run()
 {
+	// ノードが存在していなければ、ノードを選択する
 	if (!m_ActiveNode)
 	{
 		m_ActiveNode = m_BehaviorTree->Inference(this, m_BehaviorData);
 	}
+	// ノードを実行する
 	if (m_ActiveNode)
 	{
 		m_ActiveNode = m_BehaviorTree->Run(this, m_ActiveNode, m_BehaviorData);
