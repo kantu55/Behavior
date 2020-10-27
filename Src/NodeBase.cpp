@@ -202,6 +202,41 @@ NodeBase* NodeBase::SelectSequence(std::vector<NodeBase*> *list, BehaviorData* d
 	return NULL;
 }
 
+NodeBase* NodeBase::SelectSelector(std::vector<NodeBase*> *list, BehaviorData* data)
+{
+	// 今のノードのシーケンスのステップを取得
+	int step = data->GetSequenceStep(GetName());
+
+	// シーケンスが終わったら終了
+	if (step >= m_Child.size())
+	{
+		if (m_SelectRule != BehaviorTree::SELECT_RULE::SEQUENTIAL_LOOPING)
+		{
+			return NULL;
+		}
+		else
+		{
+			// Loopingの場合は頭から実行
+			step = 0;
+		}
+	}
+
+	// 順番のノードが実行できているかチェック
+	for (auto itr = list->begin(); itr != list->end(); itr++)
+	{
+		if (m_Child[step]->GetName() == (*itr)->GetName())
+		{
+			// シーケンスノードを記録
+			data->PushSequenceNode(this);
+			// シーケンスステップを更新
+			data->SetSequenceStep(GetName(), step + 1);
+			return m_Child[step];
+		}
+	}
+
+	return NULL;
+}
+
 // 成功判定
 bool NodeBase::Judgment(Enemy* enemy)
 {

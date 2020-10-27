@@ -114,7 +114,7 @@ public:
 	// シーケンス選択
 	NodeBase* SelectSequence(std::vector<NodeBase*> *list, BehaviorData* data);
 	// セレクター選択
-	NodeBase* SelectSelecor(std::vector<NodeBase*> *list, BehaviorData* data);
+	NodeBase* SelectSelector(std::vector<NodeBase*> *list, BehaviorData* data);
 	// ノード検索
 	NodeBase* SearchNode(std::string search_name);
 	// ノード推論
