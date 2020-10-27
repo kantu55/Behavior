@@ -29,7 +29,6 @@ void BehaviorTree::AddNode(std::string search_name, std::string entry_name, int 
 			// ƒm[ƒh‚Ì’Ç‰Á
 			NodeBase* sibling = search_node->GetLastChild();
 			NodeBase* add_node = new NodeBase(entry_name, search_node, sibling, priority, select_rule, judgment, action, search_node->GetHirerchyNo() + 1);
-
 			search_node->AddChild(add_node);
 		}
 	}
@@ -52,7 +51,7 @@ void BehaviorTree::PrintTree()
 {
 	if (m_Root)
 	{
-		m_Root->PrintName();
+		m_Root->PrintName(0);
 	}
 }
 
