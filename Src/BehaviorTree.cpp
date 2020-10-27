@@ -80,6 +80,14 @@ NodeBase* BehaviorTree::SequenceBack(NodeBase* sequence_node, Enemy* enemy, Beha
 }
 
 /*
+ セレクターノードから推論開始
+*/
+ NodeBase* BehaviorTree::SelectorBack(NodeBase* selector_node, Enemy* enemy, BehaviorData* data)
+{
+	return selector_node->Inference(enemy, data);
+}
+
+/*
  ノード実行
  @param enemy		コントロールされてるキャラクター
  @param action_node	現在実行しているノード
@@ -110,6 +118,12 @@ NodeBase* BehaviorTree::Run(Enemy* enemy, NodeBase* action_node, BehaviorData* d
 	// 失敗は終了
 	else if (state == ActionBase::STATE::FAILED)
 	{
+		// セレクターの途中か判断
+		NodeBase* selector_node = data->PopSelectorNode();
+		if (selector_node)
+		{
+			return SelectorBack(selector_node, enemy, data);
+		}
 		return NULL;
 	}
 

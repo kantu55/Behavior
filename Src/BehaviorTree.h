@@ -34,11 +34,14 @@ public:
 		m_Root(NULL)
 	{};
 
-	// 実行ノードを推論する
+	// ルートから実行ノードを推論する
 	NodeBase *Inference(Enemy *enemy, BehaviorData *data);
 
-	// シーケンスノードから推論開始
+	// シーケンスノードから推論
 	NodeBase *SequenceBack(NodeBase *sequence_node, Enemy *enemy, BehaviorData *data);
+
+	// セレクターノードから推論
+	NodeBase* SelectorBack(NodeBase* selector_node, Enemy* enemy, BehaviorData* data);
 
 	/*
 	 ノードの追加
