@@ -1,3 +1,7 @@
+/*
+ @file MagicAction.h
+*/
+
 #ifndef MAGIC_ACTION_H_
 #define MAGIC_ACTION_H_
 
