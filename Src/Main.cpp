@@ -22,9 +22,9 @@ int main()
 
 	BehaviorTree behavior;
 	behavior.AddNode("", "Root", 0, BehaviorTree::PRIORITY, NULL, NULL);
-	behavior.AddNode("Root", "Attack", 1, BehaviorTree::RANDOM, AttackJudgment::GetInstance(), NULL);
+	behavior.AddNode("Root", "Attack", 1, BehaviorTree::ON_OFF, AttackJudgment::GetInstance(), NULL);
 	behavior.AddNode("Root", "Deffence", 2, BehaviorTree::NON, DeffenceJudgment::GetInstance(), DeffenceAction::GetInstance());
-	behavior.AddNode("Attack", "PhysicsAttack", 1, BehaviorTree::SEQUENCE, NULL, PhysicsAction::GetInstance());
+	behavior.AddNode("Attack", "PhysicsAttack", 1, BehaviorTree::NON, NULL, PhysicsAction::GetInstance());
 	behavior.AddNode("Attack", "MagicAttack", 2, BehaviorTree::NON, MagicAttackJudgment::GetInstance(), MagicAction::GetInstance());
 	behavior.AddNode("Attack", "SkillAttack", 3, BehaviorTree::NON, SkillAttackJudgment::GetInstance(), SkillAction::GetInstance());
 	
