@@ -1,3 +1,7 @@
+/*
+@ main.cpp ƒQ[ƒ€‚Ìå—v•”
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
