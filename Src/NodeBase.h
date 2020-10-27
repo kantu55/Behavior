@@ -1,3 +1,7 @@
+/*
+ @file NodeBase.h
+*/
+
 #ifndef NODE_BASE_H_
 #define NODE_BASE_H_
 
@@ -114,7 +118,7 @@ public:
 	// ノード推論
 	NodeBase* Inference(Enemy* enemy, BehaviorData* data);
 	// ノード名表示
-	void PrintName();
+	void PrintName(int layer);
 	// 実行
 	ActionBase::STATE Run(Enemy* enemy);
 

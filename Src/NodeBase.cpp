@@ -7,13 +7,12 @@
 
 /*
  ノード検索
+
  @param search_name … 検索したノード
- 
- @retrun
 */
 NodeBase* NodeBase::SearchNode(std::string search_name)
 {
-	// 名前が一致
+	// 名前が一致したら現在検索しているノードを返す
 	if (m_Name == search_name)
 	{
 		return this;
@@ -23,6 +22,7 @@ NodeBase* NodeBase::SearchNode(std::string search_name)
 		// 子ノードで検索
 		for (auto itr = m_Child.begin(); itr != m_Child.end(); itr++)
 		{
+			// 再起関数で名前が一致するまで調べる
 			NodeBase* ret = (*itr)->SearchNode(search_name);
 			if (ret)
 			{
@@ -30,6 +30,7 @@ NodeBase* NodeBase::SearchNode(std::string search_name)
 			}
 		}
 	}
+	// 見つからなかったらNULLで返す
 	return NULL;
 }
 
@@ -37,8 +38,6 @@ NodeBase* NodeBase::SearchNode(std::string search_name)
  ノードを推論
  @param enemy	コントロールしているキャラクター
  @param data	ビヘイビアデータ
-
- @return		
 */
 NodeBase* NodeBase::Inference(Enemy* enemy, BehaviorData* data)
 {
@@ -48,8 +47,10 @@ NodeBase* NodeBase::Inference(Enemy* enemy, BehaviorData* data)
 	// 子ノードで実行可能なノードを探す
 	for (int i = 0; i < m_Child.size(); i++)
 	{
+		// 判定クラスを持っているか
 		if (m_Child[i]->m_ExecJudgment != NULL)
 		{
+			// 判定クラスで実行可能ならlistにノードを追加する
 			if (m_Child[i]->m_ExecJudgment->Judgment(enemy))
 			{
 				list.push_back(m_Child[i]);
@@ -74,9 +75,11 @@ NodeBase* NodeBase::Inference(Enemy* enemy, BehaviorData* data)
 	case BehaviorTree::SEQUENTIAL_LOOPING:
 		result = SelectSequence(&list, data);
 		break;
+	// ランダム
 	case BehaviorTree::RANDOM:
 		result = SelectRandom(&list);
 		break;
+	// オン・オフ
 	case BehaviorTree::ON_OFF:
 		result = SelectOnOff(&list, data);
 		break;
@@ -209,12 +212,18 @@ ActionBase::STATE NodeBase::Run(Enemy* enemy)
 }
 
 // 名前表示
-void NodeBase::PrintName()
+void NodeBase::PrintName(int layer)
 {
+
+	for (int i = 0; i < layer; i++)
+	{
+		printf("\t");
+	}
 	std::cout << m_Name << std::endl;
 
+	layer++;
 	for (auto itr = m_Child.begin(); itr != m_Child.end(); itr++)
 	{
-		(*itr)->PrintName();
+		(*itr)->PrintName(layer);
 	}
 }
