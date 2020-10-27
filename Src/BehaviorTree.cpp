@@ -62,8 +62,9 @@ void BehaviorTree::PrintTree()
 */
 NodeBase* BehaviorTree::Inference(Enemy* enemy, BehaviorData* data)
 {
-	// データをリセットして開始
+	// データをリセット
 	data->Init();
+	// ルートから推論してノードを選択する
 	return m_Root->Inference(enemy, data);
 }
 

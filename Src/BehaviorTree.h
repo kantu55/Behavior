@@ -26,6 +26,7 @@ public:
 		SEQUENTIAL_LOOPING,	// シーケンシャルルーピング
 		RANDOM,				// ランダム
 		ON_OFF,				// オン・オフ
+		Selector,			// セレクター
 	};
 
 public:
