@@ -1,3 +1,6 @@
+/*
+ @file BehaviorTree.cpp
+*/
 #include "BehaviorTree.h"
 #include "ActionBase.h"
 #include "NodeBase.h"
@@ -7,12 +10,12 @@
 
 /*
  ノードの追加
- @param search_name	 … 親ノード
- @param entry_name	 … 追加したいノード
- @param priority	 … 優先順位
- @param select_rule	 … 選択ルール
- @param judgment	 … 判定
- @param action		 … 実行
+ @param search_name	親ノード
+ @param entry_name	追加したいノード
+ @param priority	優先順位
+ @param select_rule	選択ルール
+ @param judgment	判定
+ @param action		実行
 */
 void BehaviorTree::AddNode(std::string search_name, std::string entry_name, int priority, SELECT_RULE select_rule, ExecJudgmentBase *judgment, ActionBase *action)
 {
@@ -70,8 +73,6 @@ NodeBase* BehaviorTree::Inference(Enemy* enemy, BehaviorData* data)
  @param sequence_node	
  @param enemy			コントロールされているキャラクター
  @param data			データ
-
- @return				
  */
 NodeBase* BehaviorTree::SequenceBack(NodeBase* sequence_node, Enemy* enemy, BehaviorData* data)
 {
@@ -80,11 +81,9 @@ NodeBase* BehaviorTree::SequenceBack(NodeBase* sequence_node, Enemy* enemy, Beha
 
 /*
  ノード実行
- @param enemy		
- @param action_node	
- @param data		
-
- @return 
+ @param enemy		コントロールされてるキャラクター
+ @param action_node	現在実行しているノード
+ @param data		ビヘイビアを管理するデータ
 */
 NodeBase* BehaviorTree::Run(Enemy* enemy, NodeBase* action_node, BehaviorData* data)
 {
