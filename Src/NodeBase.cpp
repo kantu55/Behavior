@@ -102,7 +102,9 @@ NodeBase* NodeBase::Inference(Enemy* enemy, BehaviorData* data)
 	return result;
 }
 
-// 優先順位
+/*
+ 優先順位法 … 実行可能なノードから最も優先度の高いノードを選択する
+*/
 NodeBase* NodeBase::SelectPriority(std::vector<NodeBase*> *list)
 {
 	NodeBase* select_node = NULL;
@@ -121,7 +123,9 @@ NodeBase* NodeBase::SelectPriority(std::vector<NodeBase*> *list)
 	return select_node;
 }
 
-// オン・オフ
+/*
+ オン・オフ法 … 実行可能なノードからまだ実行していないノードを選択する
+*/
 NodeBase* NodeBase::SelectOnOff(std::vector<NodeBase*> *list, BehaviorData* data)
 {
 	std::vector<NodeBase*> off_list;
@@ -150,14 +154,19 @@ NodeBase* NodeBase::SelectOnOff(std::vector<NodeBase*> *list, BehaviorData* data
 	return off_list[0];
 }
 
-// ランダム
+/*
+ ランダム法 … 実行可能なノードからランダムに選択する
+*/
 NodeBase* NodeBase::SelectRandom(std::vector<NodeBase*> *list)
 {
 	int select_no = rand() % list->size();
 	return (*list)[select_no];
 }
 
-// シーケンス
+/*
+ シーケンス法 … 子ノードを上から順に選択する。末端までいったら終了
+ シーケンシャル・ルーピング法 … 末端までいっても先頭に戻る
+*/
 NodeBase* NodeBase::SelectSequence(std::vector<NodeBase*> *list, BehaviorData* data)
 {
 	// 今のノードのシーケンスのステップを取得
