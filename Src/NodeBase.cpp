@@ -189,7 +189,7 @@ NodeBase* NodeBase::SelectSequence(std::vector<NodeBase*> *list, BehaviorData* d
 		}
 	}
 
-	// 順番のノードが実行できているかチェック
+	// 順番にノードが実行できているかチェック
 	for (auto itr = list->begin(); itr != list->end(); itr++)
 	{
 		if (m_Child[step]->GetName() == (*itr)->GetName())

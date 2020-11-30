@@ -57,8 +57,8 @@ void BehaviorTree::PrintTree()
 
 /*
  推論
- @param enemy	… コントロールされているキャラクター
- @param data	… データ
+ @param enemy	コントロールされているキャラクター
+ @param data	データ
 */
 NodeBase* BehaviorTree::Inference(Enemy* enemy, BehaviorData* data)
 {
@@ -70,7 +70,7 @@ NodeBase* BehaviorTree::Inference(Enemy* enemy, BehaviorData* data)
 
 /*
  シーケンスノードからの推論開始
- @param sequence_node	
+ @param sequence_node	現在のシーケンスノード
  @param enemy			コントロールされているキャラクター
  @param data			データ
  */
