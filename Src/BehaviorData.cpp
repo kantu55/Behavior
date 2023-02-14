@@ -7,6 +7,7 @@
 #include "Enemy.h"
 
 // ‰Šú‰»
+// test
 void BehaviorData::Init()
 {
 	m_RunSequenceStepMap.clear();
